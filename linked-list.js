@@ -41,8 +41,10 @@ class LinkedList {
     if (!this.head) {
       this.head = newNode;
       this.tail = newNode;
+    } else {
+      newNode.next = this.head;
+      this.head = newNode;
     }
-
     this.length += 1;
   }
 
@@ -90,16 +92,15 @@ class LinkedList {
   setAt(idx, val) {
     if (this.length === 0 || idx >= this.length) {
       throw new Error('Invalid index')
-    } else {
+    } 
       let currentNode = this.head;
       let tracker = 0;
 
       while (tracker < idx) {
-        currentNode = currentNode.nexttracker += 1;
+        currentNode = currentNode.next;
         tracker += 1;
       }
       currentNode.val = val;
-    }
   }
 
   /** insertAt(idx, val): add node w/val before idx. */
@@ -107,15 +108,16 @@ class LinkedList {
   insertAt(idx, val) {
     if (idx > this.length) {
       throw new Error('Invalid index')
-    } if (idx === this.length || this.length === 0) {
+    } 
+    if (idx === this.length || this.length === 0) {
       this.push(val);
     } else {
       let currentNode = this.head;
-      let newNOde = new Node(val);
+      let newNode = new Node(val);
       let tracker = 0;
 
       while (tracker < idx-1) {
-        currentNode = currentNode.next
+        currentNode = currentNode.next;
         tracker += 1;
       }
       let after = currentNode.next;
@@ -165,7 +167,7 @@ class LinkedList {
       let currentNode = this.head;
       while (currentNode.next) {
         currentNode = currentNOde.next;
-        sum += currentNOde.val;
+        sum += currentNode.val;
       }
       return sum/this.length;
     }
